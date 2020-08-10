@@ -1,4 +1,5 @@
 FROM curlimages/curl as build
+WORKDIR /tmp
 RUN curl -LO https://github.com/spiral/php-grpc/releases/download/v1.4.0/rr-grpc-1.4.0-linux-amd64.tar.gz \ 
     && unzip rr-grpc-1.4.0-linux-amd64.tar.gz \
     && chmod +x /tmp/php-grpc
