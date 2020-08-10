@@ -15,6 +15,7 @@ RUN git clone -b v1.30.0 --depth=1 https://github.com/grpc/grpc
 RUN cd grpc && git submodule update --init && make grpc_php_plugin && chmod +x /tmp/grpc/bins/opt/grpc_php_plugin
 FROM namely/prototool:1.28_0
 ENV npm_config_unsafe_perm=true
+ENV PROTOTOOL_CACHE_PATH /usr/local/bin
 RUN npm i -g protoc-gen-tsd
 RUN apk --no-cache add ca-certificates wget
 RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub
