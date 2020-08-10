@@ -8,7 +8,7 @@ RUN curl -LO https://github.com/spiral/php-grpc/releases/download/v1.4.0/protoc-
 RUN curl -sSL https://github.com/uber/prototool/releases/download/v1.10.0/prototool-Linux-x86_64 \
     -o /tmp/prototool && \
     chmod +x /tmp/prototool
-RUN git clone -b v1.30.0 https://github.com/grpc/grpc
+RUN git clone -b v1.30.0 --depth=1 https://github.com/grpc/grpc
 RUN cd grpc && git submodule update --init && make grpc_php_plugin
 FROM namely/prototool:1.28_0
 ENV npm_config_unsafe_perm=true
