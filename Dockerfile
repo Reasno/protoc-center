@@ -8,6 +8,9 @@ RUN curl -LO https://github.com/spiral/php-grpc/releases/download/v1.4.0/protoc-
 RUN curl -sSL https://github.com/uber/prototool/releases/download/v1.10.0/prototool-Linux-x86_64 \
     -o /tmp/prototool && \
     chmod +x /tmp/prototool
+RUN curl -LO https://github.com/protocolbuffers/protobuf/releases/download/v3.11.2/protoc-3.11.2-linux-x86_64.zip \
+   && tar -zxvf protoc-3.11.2-linux-x86_64.zip \
+   && chmod +x protoc-3.11.2-linux-x86_64/bin/protoc
 RUN git clone -b v1.30.0 --depth=1 https://github.com/grpc/grpc
 RUN cd grpc && git submodule update --init && make grpc_php_plugin && chmod +x /tmp/grpc/bins/opt/grpc_php_plugin
 FROM namely/prototool:1.28_0
@@ -20,3 +23,4 @@ RUN apk add -f glibc-2.29-r0.apk
 COPY --from=build /tmp/protoc-gen-php-grpc-1.4.0-linux-amd64/protoc-gen-php-grpc /usr/local/bin/protoc-gen-rr-php-grpc
 COPY --from=build /tmp/prototool /usr/local/bin/prototool
 COPY --from=build /tmp/grpc/bins/opt/grpc_php_plugin /usr/local/bin/protoc-gen-php-grpc
+COPY --from=build /tmp/protoc-3.11.2-linux-x86_64/bin/protoc /usr/local/bin/protoc
