@@ -19,4 +19,4 @@ RUN wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.29-r0/
 RUN apk add -f glibc-2.29-r0.apk
 COPY --from=build /tmp/protoc-gen-php-grpc-1.4.0-linux-amd64/protoc-gen-php-grpc /usr/local/bin/protoc-gen-rr-php-grpc
 COPY --from=build /tmp/prototool /usr/local/bin/prototool
-COPY --from=build /tmp/grpc/bins/opt/grpc_php_plugin /usr/local/bin/proto-gen-php-grpc
+COPY --from=build /tmp/grpc/bins/opt/grpc_php_plugin /usr/local/bin/protoc-gen-php-grpc
