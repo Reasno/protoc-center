@@ -9,7 +9,7 @@ RUN curl -sSL https://github.com/uber/prototool/releases/download/v1.10.0/protot
     -o /tmp/prototool && \
     chmod +x /tmp/prototool
 RUN curl -LO https://github.com/protocolbuffers/protobuf/releases/download/v3.11.2/protoc-3.11.2-linux-x86_64.zip \
-   && tar -zxvf protoc-3.11.2-linux-x86_64.zip \
+   && unzip protoc-3.11.2-linux-x86_64.zip \
    && chmod +x protoc-3.11.2-linux-x86_64/bin/protoc
 RUN git clone -b v1.30.0 --depth=1 https://github.com/grpc/grpc
 RUN cd grpc && git submodule update --init && make grpc_php_plugin && chmod +x /tmp/grpc/bins/opt/grpc_php_plugin
