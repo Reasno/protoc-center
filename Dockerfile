@@ -1,3 +1,5 @@
+FROM golang as GO
+RUN go get github.com/nfangxu/php-enum-generate
 FROM curlimages/curl as build
 WORKDIR /tmp
 USER root
@@ -21,4 +23,5 @@ RUN apk add -f glibc-2.29-r0.apk
 COPY --from=build /tmp/protoc-gen-php-grpc-1.4.0-linux-amd64/protoc-gen-php-grpc /usr/local/bin/protoc-gen-rr-php-grpc
 COPY --from=build /tmp/prototool /usr/local/bin/prototool
 COPY --from=build /tmp/grpc/bins/opt/grpc_php_plugin /usr/local/bin/protoc-gen-php-grpc
+COPY --from=GO /go/bin/php-enum-generate /usr/local/bin/php-enum-generate
 RUN prototool cache update
