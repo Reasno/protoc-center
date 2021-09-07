@@ -12,7 +12,7 @@ RUN curl -sSL https://github.com/uber/prototool/releases/download/v1.10.0/protot
     chmod +x /tmp/prototool
 RUN git clone -b v1.30.0 --depth=1 https://github.com/grpc/grpc
 RUN cd grpc && git submodule update --init && make grpc_php_plugin && chmod +x /tmp/grpc/bins/opt/grpc_php_plugin
-FROM namely/prototool:1.39_0-rc.1
+FROM namely/prototool:1.28_0
 ENV npm_config_unsafe_perm=true
 ENV PROTOTOOL_CACHE_PATH /usr/local/bin
 RUN npm i -g protoc-gen-tsd
